@@ -22,9 +22,9 @@ jobs:
 
       - name: build site
         run: |
+         git clone https://github.com/openkaios/openkaios-store-db.git db/
          node .
-        env:
-          HOST_PREFIX: ""
+         cd db
 
       - name: Log files
         run: ls public
@@ -33,6 +33,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repository-name: openkaios/openkaios-store-db
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch

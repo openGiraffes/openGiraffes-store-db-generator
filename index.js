@@ -3,11 +3,17 @@ const yaml = require('js-yaml')
 const { join, extname } = require('path')
 const isUrl = require('is-url-superb')
 const { http, https } = require('follow-redirects');
-var Ajv = require('ajv');
+const Ajv = require('ajv');
 const { generate_feed } = require('./generate-feed')
 
-//const HostPrefix = process.env["HOST_PREFIX"]
-const HostPrefix = "localhost"
+let config = require("config.json")
+
+const HostPrefix
+if(config.HostPrefix){
+    HostPrefix = config.HostPrefix
+} else {
+    HostPrefix = process.env["HOST_PREFIX"]
+}
 if(!HostPrefix){
     throw new Error("HOST_PREFIX is not defined")
 }
@@ -301,9 +307,9 @@ async function main() {
     if(success){
         // Validate that data.json is compliant with schema.json
         console.log("Validate that data.json")
-        var ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
-        var validate = ajv.compile(await fs.readJSON(join(__dirname, 'schema.json')));
-        var valid = validate(await fs.readJSON(join(PUBLIC, 'data.json'), 'utf-8'));
+        let ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+        let validate = ajv.compile(await fs.readJSON(join(__dirname, 'schema.json')));
+        let valid = validate(await fs.readJSON(join(PUBLIC, 'data.json'), 'utf-8'));
         if (!valid) {
             console.log("validation error:", validate.errors)
             success = false

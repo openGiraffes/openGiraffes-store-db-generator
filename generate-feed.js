@@ -1,6 +1,8 @@
 const { exec } = require("child_process");
 const { join } = require("path");
-var RSS = require("rss");
+const RSS = require("rss");
+
+let config = require("config.json")
 
 function getFileModificationDates() {
   return new Promise((resolve, reject) => {
@@ -42,12 +44,12 @@ async function generate_feed(apps, categories) {
   const dates = await getFileModificationDates();
 //   console.log({ dates });
 
-  var feed = new RSS({
-    title: "bHackers Store Apps",
-    description: "List of all Apps as RSS Feed",
-    site_url: "https://banana-hackers.gitlab.io/store-db/data.json", // TODO create store landing page and link to that instead
-    docs: "https://gitlab.com/banana-hackers/store-db/",
-    language: "English",
+  let feed = new RSS({
+    title: config.title,
+    description: config.description,
+    site_url: config.site_url, // TODO create store landing page and link to that instead
+    docs: config.docs,
+    language: config.language,
     pubDate: Date.now()
   });
 
