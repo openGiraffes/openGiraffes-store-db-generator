@@ -19,7 +19,7 @@ jobs:
 
       - name: install dependencies
         run: |
-         npm ci
+         npm install
 
       - name: build site
         run: |
