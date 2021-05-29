@@ -6,7 +6,7 @@ const { http, https } = require('follow-redirects');
 const Ajv = require('ajv');
 const { generate_feed } = require('./generate-feed')
 
-let config = require("config.json")
+let config = require("./config.json")
 
 let HostPrefix
 if(config.HostPrefix){

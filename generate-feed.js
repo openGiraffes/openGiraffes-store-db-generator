@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 const { join } = require("path");
 const RSS = require("rss");
 
-let config = require("config.json")
+let config = require("./config.json")
 
 function getFileModificationDates() {
   return new Promise((resolve, reject) => {
