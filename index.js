@@ -8,7 +8,7 @@ const { generate_feed } = require('./generate-feed')
 
 let config = require("config.json")
 
-const HostPrefix
+let HostPrefix
 if(config.HostPrefix){
     HostPrefix = config.HostPrefix
 } else {
