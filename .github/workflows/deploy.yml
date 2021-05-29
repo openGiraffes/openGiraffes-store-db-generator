@@ -28,7 +28,7 @@ jobs:
          cd db
 
       - name: Log files
-        run: ls public
+        run: ls db/public
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
