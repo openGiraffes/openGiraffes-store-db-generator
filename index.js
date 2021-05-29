@@ -6,12 +6,13 @@ const { http, https } = require('follow-redirects');
 var Ajv = require('ajv');
 const { generate_feed } = require('./generate-feed')
 
-const HostPrefix = process.env["HOST_PREFIX"]
+//const HostPrefix = process.env["HOST_PREFIX"]
+const HostPrefix = "localhost"
 if(!HostPrefix){
     throw new Error("HOST_PREFIX is not defined")
 }
 
-const PUBLIC = join(__dirname, '../public')
+const PUBLIC = join(__dirname, '/db/public')
 
 const APP_TYPES = ['weblink', 'hosted', 'packaged', 'privileged', 'certified', 'root']
 const ALLOWED_IMAGE_EXTENTIONS = ['.png','.jpeg', '.jpg', '.gif', '.svg']
@@ -219,7 +220,7 @@ async function main() {
     await fs.ensureDir(ICONS_FOLDER)
 
     console.log("Processing categories:")
-    const CATEGORIES = join(__dirname, '../categories')
+    const CATEGORIES = join(__dirname, '/db/categories')
     const cfiles = await fs.readdir(CATEGORIES)
 
     let categories = {}
@@ -243,7 +244,7 @@ async function main() {
 
     console.log("Processing apps:")
 
-    const APPS = join(__dirname, '../apps')
+    const APPS = join(__dirname, '/db/apps')
     const afiles = await fs.readdir(APPS)
 
     let apps = []

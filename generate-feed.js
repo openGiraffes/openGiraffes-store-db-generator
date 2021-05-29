@@ -8,7 +8,7 @@ function getFileModificationDates() {
     // command taken from https://serverfault.com/questions/401437/how-to-retrieve-the-last-modification-date-of-all-files-in-a-git-repository/1031956#1031956
     exec(
       'git ls-tree -r --name-only HEAD -z | TZ=UTC xargs -0n1 -I_ git --no-pager log -1 --date=iso-local --format="%ct _" -- _',
-      { cwd: join(__dirname, "../apps") },
+      { cwd: join(__dirname, "/db/apps") },
       (error, stdout, stderr) => {
         if (error) {
           reject(error);

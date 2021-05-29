@@ -18,15 +18,13 @@ jobs:
 
       - name: install dependencies
         run: |
-         cd _generator
          npm ci
 
       - name: build site
         run: |
-         cd _generator
          node .
         env:
-          HOST_PREFIX: "bananahackers.github.io/store-db/"
+          HOST_PREFIX: ""
 
       - name: Log files
         run: ls public
