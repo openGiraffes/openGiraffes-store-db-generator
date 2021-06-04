@@ -1,8 +1,8 @@
 {
-    "HostPrefix": "openkaios.top/openkaios-store-db/",
+    "HostPrefix": "storedb.openkaios.top/",
     "title": "openKaiOS Store Apps",
     "description": "List of all Apps as RSS Feed from openKaiOS Store",
-    "site_url": "https://openkaios.top/openkaios-store-db/data.json",
-    "docs": "https://openkaios.top/openkaios-store-db/",
+    "site_url": "https://storedb.openkaios.top/data.json",
+    "docs": "https://storedb.openkaios.top/",
     "language": "Chinese"
 }

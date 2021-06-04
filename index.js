@@ -79,6 +79,15 @@ function validate_apps(appData, availibleCategories) {
     } else if (isEmpty(appData.maintainer)) {
         error("Maintainer is missing")
     }
+
+    if (Array.isArray(appData.locales)) {
+        //check that all elements of the array are strings
+        if(!appData.locales.every(i => (i && typeof i === "string"))) {
+            error("Locales/s invalid: not all elements are strings")
+        }
+    } else if (isEmpty(appData.locales)) {
+        error("Locales is missing")
+    }
   
     if (appData.meta) {
         if (isEmpty(appData.meta.tags)) {
@@ -276,6 +285,10 @@ async function main() {
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
 
+            //convert locales to array
+            if(!Array.isArray(appData.locales)){
+                appData.locales = [appData.locales]
+            }
             //convert maintainer to array
             if(!Array.isArray(appData.maintainer)){
                 appData.maintainer = [appData.maintainer]

@@ -75,6 +75,9 @@ async function generate_feed(apps, categories) {
           maintainer: app.maintainer
         },
         {
+          locales: app.locales
+        },
+        {
           git_repo: app.git_repo
         },
         {
