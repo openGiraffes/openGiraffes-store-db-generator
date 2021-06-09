@@ -297,9 +297,6 @@ async function main() {
             if(!Array.isArray(appData.dependencies)){
                 appData.dependencies = [appData.dependencies]
             }
-            if(isEmpty(appData.dependencies)){
-                appData.dependencies = []
-            }
             //convert locales to array
             if(!Array.isArray(appData.locales)){
                 appData.locales = [appData.locales]
