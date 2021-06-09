@@ -137,18 +137,11 @@ function validate_apps(appData, availibleCategories) {
     }
 
     if (Array.isArray(appData.dependencies)) {
-        try {
+        appData.dependencies.forEach(() => {
             if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
-                error("Dependencies/s invalid: not all elements are strings")
-            } else if (appData.dependencies = [] || '' || appData.dependencies.length === 0) {
-                error("No dependencies, skipping.")
+                error("Maintainer/s invalid: not all elements are strings")
             }
-        }
-        catch(err) {
-            console.log(err)
-        }
-    } else if (isEmpty(appData.dependencies)) {
-        error("Dependencies are missing.")
+        });
     }
 
     if (appData.website) {
