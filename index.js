@@ -144,6 +144,9 @@ function validate_apps(appData, availibleCategories) {
                 }
             });
         }
+        if (!appData.dependencies.url) {
+            appData.dependencies.url = ""
+        }
     } else {
         appData.dependencies = []
     }
