@@ -292,12 +292,11 @@ async function main() {
                 download_screenshots(appData.slug, appData.screenshots || [])
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
-
+            appData.dependencies = []
+            
             //convert dependencies to array
             if(!Array.isArray(appData.dependencies)){
                 appData.dependencies = [appData.dependencies]
-            } else {
-                appData.dependencies = []
             }
             //convert locales to array
             if(!Array.isArray(appData.locales)){
