@@ -295,7 +295,9 @@ async function main() {
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
 
             //convert dependencies to array
-            if(!Array.isArray(appData.dependencies)){
+            if(isEmpty(appData.dependencies)){
+                appData.dependencies = ""
+            } else if(!Array.isArray(appData.dependencies)){
                 appData.dependencies = [appData.dependencies]
             }
             //convert locales to array
