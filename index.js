@@ -141,6 +141,9 @@ function validate_apps(appData, availibleCategories) {
             if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
                 error("Maintainer/s invalid: not all elements are strings")
             }
+            if (appData.dependencies.length === 0) {
+                appData.dependencies = null
+            }
         });
     }
 
@@ -295,7 +298,7 @@ async function main() {
 
             //convert dependencies to array
             if(!Array.isArray(appData.dependencies)){
-                appData.dependencies = [appData.dependencies] || []
+                appData.dependencies = [appData.dependencies]
             }
             //convert locales to array
             if(!Array.isArray(appData.locales)){
