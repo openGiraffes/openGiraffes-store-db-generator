@@ -143,8 +143,8 @@ function validate_apps(appData, availibleCategories) {
                     error("Maintainer/s invalid: not all elements are objects")
                 }
                 for (let i = 0; i < appData.dependencies.length; i++) {
-                    if (!appData.dependencies.url[i]) {
-                        appData.dependencies.url[i] = ""
+                    if (!appData.dependencies[i].url) {
+                        appData.dependencies[i].url = ""
                     }
                 }
                 
