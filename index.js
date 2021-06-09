@@ -137,13 +137,19 @@ function validate_apps(appData, availibleCategories) {
     }
 
     if (Array.isArray(appData.dependencies)) {
-        if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
-            error("Dependencies/s invalid: not all elements are strings")
+        try {
+            if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
+                error("Dependencies/s invalid: not all elements are strings")
+            } else if(appData.dependencies === null || [] || '') {
+                error("No dependencies, skipping.")
+                return true
+            } else if (isEmpty(appData.dependencies)) {
+            error("Dependencies is missing")
+            }
         }
-    }  else if(appData.dependencies === null || [] || '') {
-        error("No dependencies, skipping.")
-    } else if (isEmpty(appData.dependencies)) {
-        error("Dependencies is missing")
+        catch(err) {
+            console.log(err)
+        }
     }
 
     if (appData.website) {
