@@ -140,7 +140,7 @@ function validate_apps(appData, availibleCategories) {
         try {
             if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
                 error("Dependencies/s invalid: not all elements are strings")
-            } else if (appData.dependencies.length === 0) {
+            } else if (appData.dependencies = [] || '' || appData.dependencies.length === 0) {
                 error("No dependencies, skipping.")
             }
         }
@@ -148,7 +148,7 @@ function validate_apps(appData, availibleCategories) {
             console.log(err)
         }
     } else if (isEmpty(appData.dependencies)) {
-        error("No dependencies, skipping.")
+        error("Dependencies are missing.")
     }
 
     if (appData.website) {
