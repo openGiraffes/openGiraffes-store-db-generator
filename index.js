@@ -142,6 +142,7 @@ function validate_apps(appData, availibleCategories) {
         }
     } else if (isEmpty(appData.dependencies)) {
         error("No dependencies, skipping...")
+        return true
     }
 
     if (appData.website) {
