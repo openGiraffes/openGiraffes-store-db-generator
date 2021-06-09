@@ -296,7 +296,7 @@ async function main() {
 
             //convert dependencies to array
             if(isEmpty(appData.dependencies)){
-                appData.dependencies = [""]
+                appData.dependencies = []
             } else if(!Array.isArray(appData.dependencies)){
                 appData.dependencies = [appData.dependencies]
             }
