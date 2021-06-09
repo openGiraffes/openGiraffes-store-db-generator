@@ -140,9 +140,8 @@ function validate_apps(appData, availibleCategories) {
         appData.dependencies.forEach(() => {
             if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
                 error("Maintainer/s invalid: not all elements are strings")
-            }
-            if (appData.dependencies.length === 0) {
-                appData.dependencies = []
+            } else if (appData.dependencies === null) {
+                appData.dependencies === []
             }
         });
     }
