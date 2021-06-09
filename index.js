@@ -140,9 +140,10 @@ function validate_apps(appData, availibleCategories) {
         if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
             error("Dependencies/s invalid: not all elements are strings")
         }
+    }  else if(appData.dependencies === null || [] || '') {
+        error("No dependencies, skipping.")
     } else if (isEmpty(appData.dependencies)) {
-        error("No dependencies, skipping...")
-        return true
+        error("Dependencies is missing")
     }
 
     if (appData.website) {
@@ -295,11 +296,11 @@ async function main() {
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
 
             //convert dependencies to array
-            if(isEmpty(appData.dependencies)){
-                appData.dependencies = []
-            }
             if(!Array.isArray(appData.dependencies)){
                 appData.dependencies = [appData.dependencies]
+            }
+            if(isEmpty(appData.dependencies)){
+                appData.dependencies = []
             }
             //convert locales to array
             if(!Array.isArray(appData.locales)){
