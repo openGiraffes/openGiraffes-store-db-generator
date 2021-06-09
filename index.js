@@ -142,10 +142,10 @@ function validate_apps(appData, availibleCategories) {
                 if(!appData.dependencies.every(i => (i && typeof i === "object"))) {
                     error("Maintainer/s invalid: not all elements are objects")
                 }
+                if (appData.dependencies.url === null) {
+                    appData.dependencies.url = ""
+                }
             });
-            if (appData.dependencies.url === null) {
-                appData.dependencies.url = ""
-            }
         }
     } else {
         appData.dependencies = []
