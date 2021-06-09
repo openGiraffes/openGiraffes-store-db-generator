@@ -80,6 +80,15 @@ function validate_apps(appData, availibleCategories) {
         error("Maintainer is missing")
     }
 
+    if (Array.isArray(appData.dependencies)) {
+        //check that all elements of the array are strings
+        if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
+            error("Dependencies/s invalid: not all elements are strings")
+        }
+    } else if (isEmpty(appData.dependencies)) {
+        error("Dependencies is missing")
+    }
+
     if (Array.isArray(appData.locales)) {
         //check that all elements of the array are strings
         if(!appData.locales.every(i => (i && typeof i === "string"))) {
@@ -285,6 +294,10 @@ async function main() {
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
 
+            //convert dependencies to array
+            if(!Array.isArray(appData.dependencies)){
+                appData.dependencies = [appData.dependencies]
+            }
             //convert locales to array
             if(!Array.isArray(appData.locales)){
                 appData.locales = [appData.locales]

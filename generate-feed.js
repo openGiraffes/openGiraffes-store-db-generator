@@ -75,6 +75,9 @@ async function generate_feed(apps, categories) {
           maintainer: app.maintainer
         },
         {
+          dependencies: app.dependencies
+        },
+        {
           locales: app.locales
         },
         {
