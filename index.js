@@ -80,15 +80,6 @@ function validate_apps(appData, availibleCategories) {
         error("Maintainer is missing")
     }
 
-    if (Array.isArray(appData.dependencies)) {
-        //check that all elements of the array are strings
-        if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
-            error("Dependencies/s invalid: not all elements are strings")
-        }
-    } else if (isEmpty(appData.dependencies)) {
-        error("Dependencies is missing")
-    }
-
     if (Array.isArray(appData.locales)) {
         //check that all elements of the array are strings
         if(!appData.locales.every(i => (i && typeof i === "string"))) {
@@ -143,6 +134,16 @@ function validate_apps(appData, availibleCategories) {
                 error(`Screenshot url invalid: "${screenshot_url}"`)
             }
         });
+    }
+
+    if (Array.isArray(appData.dependencies)) {
+        if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
+            error("Dependencies/s invalid: not all elements are strings")
+        } else if(!appData.dependencies.every(i => (i && typeof i === NULL))) {
+            error("No dependencies, skipping.")
+        }
+    } else if (isEmpty(appData.dependencies)) {
+        error("Dependencies is missing")
     }
 
     if (appData.website) {
