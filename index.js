@@ -142,7 +142,6 @@ function validate_apps(appData, availibleCategories) {
                 error("Dependencies/s invalid: not all elements are strings")
             } else if(appData.dependencies === null || [] || '') {
                 error("No dependencies, skipping.")
-                return true
             } else if (isEmpty(appData.dependencies)) {
             error("Dependencies is missing")
             }
