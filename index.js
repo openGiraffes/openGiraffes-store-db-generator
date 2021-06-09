@@ -136,15 +136,18 @@ function validate_apps(appData, availibleCategories) {
         });
     }
 
-    if (Array.isArray(appData.dependencies)) {
-        appData.dependencies.forEach(() => {
-            if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
-                error("Maintainer/s invalid: not all elements are strings")
-            } else if (appData.dependencies === null) {
-                appData.dependencies === []
-            }
-        });
+    if (appData.dependencies) {
+        if (Array.isArray(appData.dependencies)) {
+            appData.dependencies.forEach(() => {
+                if(!appData.dependencies.every(i => (i && typeof i === "string"))) {
+                    error("Maintainer/s invalid: not all elements are strings")
+                }
+            });
+        }
+    } else {
+        appData.dependencies = []
     }
+    
 
     if (appData.website) {
         if (!isUrl(appData.website)) {
