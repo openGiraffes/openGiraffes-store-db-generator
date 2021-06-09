@@ -142,7 +142,7 @@ function validate_apps(appData, availibleCategories) {
                 error("Maintainer/s invalid: not all elements are strings")
             }
             if (appData.dependencies.length === 0) {
-                appData.dependencies = null
+                appData.dependencies = []
             }
         });
     }
