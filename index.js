@@ -143,9 +143,9 @@ function validate_apps(appData, availibleCategories) {
                     error("Maintainer/s invalid: not all elements are objects")
                 }
             });
-        }
-        if (!appData.dependencies.url) {
-            appData.dependencies.url = ""
+            if (appData.dependencies.url === null) {
+                appData.dependencies.url = ""
+            }
         }
     } else {
         appData.dependencies = []
