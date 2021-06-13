@@ -314,8 +314,6 @@ async function main() {
                 download_screenshots(appData.slug, appData.screenshots || [])
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
-            // include app zip size
-            appData.size = get_app_filesize(appData.slug, appData.size)
 
             //convert dependencies to array
             if(!Array.isArray(appData.dependencies)){
@@ -337,6 +335,7 @@ async function main() {
             // add app to dataset
 
             apps.push(appData)
+            appData.set("size", get_app_filesize(appData.slug, appData.size))
         } catch (error) {
             console.error(`Error/s in ${file}:\n`, error.message)
             success = false
