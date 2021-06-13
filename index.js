@@ -232,9 +232,11 @@ function path_to_downloaded_icon(appSlug, url) {
 }
 
 function get_app_filesize(appSlug, url) {
-    https.get(url, function (res) {
-        let size=res.headers["content-length"];
-        return size
+    return new Promise(() =>{
+        https.get(url, function (res) {
+            let size=res.headers["content-length"];
+            return size
+        })
     })
 }
 
