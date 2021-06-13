@@ -232,6 +232,9 @@ function path_to_downloaded_icon(appSlug, url) {
 }
 
 function get_app_filesize(appSlug, url) {
+    if (url.indexOf('http') !== 0) {
+        reject("url does not have the http or https scheme")
+    }
     const get = url.indexOf('https') === 0 ? https.get:http.get;
     get(url, function (res) {
         let size=res.headers["content-length"];
@@ -312,10 +315,7 @@ async function main() {
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
             // include app zip size
-            download_queu.push(
-                get_app_filesize(appData.slug, appData.size)
-            )
-            appData.size
+            appData.size = get_app_filesize(appData.slug, appData.size)
 
             //convert dependencies to array
             if(!Array.isArray(appData.dependencies)){
