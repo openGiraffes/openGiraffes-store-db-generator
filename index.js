@@ -304,6 +304,8 @@ async function main() {
             validate_apps(appData, Object.keys(categories))
             
             appData.slug = file.replace(/.ya?ml/, "")
+            // add app size
+            appData.size = get_app_filesize(appData.slug, appData.url)
             // download icon
             download_queu.push(
                 download_icon(appData.slug, appData.icon)
@@ -335,7 +337,6 @@ async function main() {
             // add app to dataset
 
             apps.push(appData)
-            appData.set("size", get_app_filesize(appData.slug, appData.size))
         } catch (error) {
             console.error(`Error/s in ${file}:\n`, error.message)
             success = false
