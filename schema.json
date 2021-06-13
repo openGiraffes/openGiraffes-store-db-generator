@@ -132,6 +132,9 @@
                     },
                     "slug": {
                         "type": "string"
+                    },
+                    "size": {
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -145,7 +148,8 @@
                     "locales",
                     "meta",
                     "type",
-                    "slug"
+                    "slug",
+                    "size"
                 ]
             }
         }

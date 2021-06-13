@@ -231,6 +231,14 @@ function path_to_downloaded_icon(appSlug, url) {
     return 'https://' + join(HostPrefix, 'icons/', appSlug + urlExtname(url));
 }
 
+function get_app_filesize(appSlug, url) {
+    const get = url.indexOf('https') === 0 ? https.get:http.get;
+    get(url, function (res) {
+        let size=res.headers["content-length"];
+        return size
+    })
+}
+
 async function download_screenshots(appSlug, urls){
     await fs.ensureDir(join(ICONS_FOLDER, appSlug))
     await Promise.all(
@@ -303,6 +311,11 @@ async function main() {
                 download_screenshots(appData.slug, appData.screenshots || [])
             )
             appData.screenshots = paths_to_downloaded_screenshots(appData.slug, appData.screenshots || [])
+            // include app zip size
+            download_queu.push(
+                get_app_filesize(appData.slug, appData.size)
+            )
+            appData.size
 
             //convert dependencies to array
             if(!Array.isArray(appData.dependencies)){
