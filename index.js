@@ -198,7 +198,15 @@ function validate_category(category) {
         error("Icon code is not a valid font awesome icon")
     }
 
-    if (isEmpty(category.locales)) {
+    if (category.locales) {
+        if (Array.isArray(category.locales)) {
+            category.locales.forEach(() => {
+                if(!category.locales.every(i => (i && typeof i === "object"))) {
+                    error("Locale/s invalid: not all elements are objects(category)")
+                }
+            });
+        }
+    } else {
         error("Locales is missing (category)")
     }
     // if (category.locales) {
