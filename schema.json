@@ -27,7 +27,19 @@
                         "locales": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": "object",
+                                "properties": {
+                                    "locale": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "locale",
+                                    "text"
+                                ]
                             }
                         }
                     }

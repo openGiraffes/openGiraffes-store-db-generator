@@ -140,7 +140,7 @@ function validate_apps(appData, availibleCategories) {
         if (Array.isArray(appData.dependencies)) {
             appData.dependencies.forEach(() => {
                 if(!appData.dependencies.every(i => (i && typeof i === "object"))) {
-                    error("Maintainer/s invalid: not all elements are objects")
+                    error("Dependencies invalid: not all elements are objects")
                 }
                 for (let i = 0; i < appData.dependencies.length; i++) {
                     if (!appData.dependencies[i].url) {
@@ -198,13 +198,16 @@ function validate_category(category) {
         error("Icon code is not a valid font awesome icon")
     }
 
-    if (Array.isArray(category.locales)) {
-        //check that all elements of the array are strings
-        if(!category.locales.every(i => (i && typeof i === "string"))) {
-            error("Locale/s invalid: no any locales for category")
+    if (category.locales) {
+        if (Array.isArray(category.locales)) {
+            category.locales.forEach(() => {
+                if(!category.locales.every(i => (i && typeof i === "object"))) {
+                    error("Locale/s invalid: not all elements are objects(category)")
+                }
+            });
         }
-    } else if (isEmpty(category.locales)) {
-        error("Locales is missing(category)")
+    } else {
+        category.locales = []
     }
 
     if (errors.length > 0) {
