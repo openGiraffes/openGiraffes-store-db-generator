@@ -198,6 +198,15 @@ function validate_category(category) {
         error("Icon code is not a valid font awesome icon")
     }
 
+    if (Array.isArray(category.locales)) {
+        //check that all elements of the array are strings
+        if(!category.locales.every(i => (i && typeof i === "string"))) {
+            error("Locale/s invalid: no any locales for category")
+        }
+    } else if (isEmpty(category.locales)) {
+        error("Locales is missing(category)")
+    }
+
     if (errors.length > 0) {
         throw new Error(errors.join('\n '))
     }

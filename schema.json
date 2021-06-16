@@ -23,6 +23,12 @@
                         },
                         "icon": {
                             "type": "string"
+                        },
+                        "locales": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
