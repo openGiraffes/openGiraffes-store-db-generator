@@ -207,7 +207,8 @@ function validate_category(category) {
             });
         }
     } else {
-        error("Locales is missing (category)")
+        category.locales = []
+        // error("Locales is missing (category)")
     }
     // if (category.locales) {
     //     if (Array.isArray(category.locales)) {
