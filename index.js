@@ -126,6 +126,10 @@ function validate_apps(appData, availibleCategories) {
         error("has Ads is missing")
     }
 
+    if (typeof appData.fromstore !== "boolean") {
+        error("Unrecognized source")
+    }
+
     // Optional
 
     if (Array.isArray(appData.screenshots)) {
